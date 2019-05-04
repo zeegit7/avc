@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import Header from './Header';
 import '../App.css';
 import {Button, Form} from 'react-bootstrap';
-import {history} from '../utils/utils';
 
 const headers = {
   'Accept': 'application/json'
 };
 
+
+
+//line 13, 75 - change paths
+
+
+//change this if required
 const uploadVideoUrl = 'http://localhost:5000/';
 
 class Input extends Component {
@@ -15,6 +20,14 @@ class Input extends Component {
   constructor(){
 
     super();
+
+    this.state={
+
+      errors : [],
+      showErrorMessages:false,
+      messageType : "alert alert-light" 
+
+    };
 
     this.videoData = {
 
@@ -26,13 +39,12 @@ class Input extends Component {
   }
   
 
-
-
- 
-
   handleSubmit(){
 
     console.log("Video submitted!");
+
+    this.state.errors=[];
+    this.setState({messageType:"alert-alert-light"})
 
     //api call
     fetch(`${uploadVideoUrl}`, {
@@ -45,7 +57,8 @@ class Input extends Component {
   .then(res => {
       console.log("res",res)
           console.log("Add Video Success!!")
-          this.props.handleVideoTitle(this.videoData.title);
+          this.setState({errors:["Access summarized video here!"]})
+          //this.props.handleVideoTitle(this.videoData.title);
           //alert("Video upload successsful");
       }).catch(err => {
           console.log("Video upload server error");
@@ -55,6 +68,18 @@ class Input extends Component {
   }
 
   render() {
+
+    let errors = this.state.errors.map((error, i)=>{
+      return(
+
+
+        //change this - required
+
+          <a href='file:///C:\Users\Zee\Desktop\avc\avc_frontend\public\Results\' className="alert alert-success" role="alert">
+              {error}
+          </a>
+
+  )});
 
     return (
     <div>
@@ -111,54 +136,30 @@ class Input extends Component {
                     Submit
                  </Button>
 
+                 <br>
+                 </br>
 
-                  {/* <form id="register-form">
+                 <br>
+                 
+                 </br>
 
-                      <div>
+                 <br>
+                 
+                 </br>
 
-                          <div>
+                 <br>
+                 
+                 </br>
 
-                            <br></br>
+                 <div className = "container">
 
-                            <br></br>
+                  <div className={this.state.messageType}>
 
+                      {errors}
 
-                          <h1>Upload</h1>
+                  </div>
 
-                          <br></br>
-
-                              <input type="text" name="name" placeholder ="Enter Video URL" onChange= {(e)=>{this.videoData.url=e.target.value}}/>
-
-                              <br></br>
-
-                              <br></br>
-
-
-                              <input type="text" name="contact" placeholder ="Enter Title" onChange= {(e)=>{this.videoData.title=e.target.value}}/>
-
-                              <br></br>
-
-                              <br></br>
-
-                              <input type="text" name="city" placeholder ="Enter Description" onChange= {(e)=>{this.videoData.description=e.target.value}}/>
-
-                              <br></br>
-
-                              <br></br>
-                                  
-                                  <br/>
-                                  <Button  onClick={()=> {this.handleSubmit()}} >
-                                      Submit
-                                  </Button>
-
-
-                          </div>
-
-                      </div>
-
-                      </form> */}
-
-
+                  </div>
 
           </div>
           <div className="col-sm-3"></div>
