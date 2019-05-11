@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import '../App.css';
-import {ProgressBar, ResponsiveEmbed} from 'react-bootstrap';
+import { Player, Jumbotron, Button } from 'video-react';
+//import '../App.css';
+
 
 
 class Output extends Component {
@@ -33,13 +34,25 @@ class Output extends Component {
         <div className="row">
           <div className="col-sm-1"></div>
           <div className="col-sm-10">
+ 
+              {/* <div className="embed-responsive embed-responsive-16by9" style={{maxHeight:800}} type="video/x-flv" >
+               <iframe title = "Hello" className="embed-responsive-item" src={url} allowFullScreen></iframe>
+             </div>  */}
+             
+             {/* <video src={url} controls="controls" type="video/mp4" codecs="avc1.4D401E, mp4a.40.2">
+             </video> */}
 
-            <div className="embed-responsive embed-responsive-16by9" style={{maxHeight:800}}>
-              <iframe title = "Hello" className="embed-responsive-item" src={url} allowFullScreen></iframe>
-            </div>
+            <Player
+                  playsInline
+                  src={url}
+            />
             
-            {/* <video src="Eiro.mp4" controls="controls">
-            </video> */}
+
+            {/* <a href="file:///C:\Users\Zee\Desktop\avc\avc_frontend\public\Results\"><strong>Access summarized video here!</strong></a> */}
+
+
+
+
 
             <br></br>
 
@@ -63,6 +76,8 @@ class Output extends Component {
             </div>
 
             </div>
+
+            <div className="col-sm-1"></div>
       
       </div>
     );

@@ -43,8 +43,8 @@ class Input extends Component {
 
     console.log("Video submitted!");
 
-    this.state.errors=[];
-    this.setState({messageType:"alert-alert-light"})
+    //this.state.errors=[];
+    //this.setState({messageType:"alert-alert-light"})
 
     //api call
     fetch(`${uploadVideoUrl}`, {
@@ -57,13 +57,14 @@ class Input extends Component {
   .then(res => {
       console.log("res",res)
           console.log("Add Video Success!!")
-          this.setState({errors:["Access summarized video here!"]})
-          //this.props.handleVideoTitle(this.videoData.title);
-          //alert("Video upload successsful");
+          //this.setState({errors:["Access summarized video here!"], messageType:"alert-alert-success" })
+          this.props.handleVideoTitle(this.videoData.title);
+          alert("Video upload successsful");
       }).catch(err => {
           console.log("Video upload server error");
           return err;
           });
+
 
   }
 
@@ -71,9 +72,6 @@ class Input extends Component {
 
     let errors = this.state.errors.map((error, i)=>{
       return(
-
-
-        //change this - required
 
           <a href='file:///C:\Users\Zee\Desktop\avc\avc_frontend\public\Results\' className="alert alert-success" role="alert">
               {error}
